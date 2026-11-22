@@ -1,0 +1,72 @@
+:root {
+  --bg: #1b1a2e;
+  --panel: #25243d;
+  --line: #3a3860;
+  --text: #f3eefc;
+  --muted: #a9a4c9;
+  --accent: #ff7ab8;
+  --accent-ink: #2a0a1a;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--text); }
+body { font-family: var(--font-body), system-ui, sans-serif; line-height: 1.5; }
+
+.app { max-width: 1440px; margin: 0 auto; padding: 24px 16px 48px; }
+.top { margin-bottom: 20px; }
+.top h1 { margin: 0; font-family: var(--font-display), system-ui, sans-serif; font-size: 2.4rem; letter-spacing: -0.02em; }
+.top p { margin: 4px 0 0; color: var(--muted); }
+
+.grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 900px) { .grid { grid-template-columns: repeat(3, 1fr); align-items: start; } }
+
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+.panel h2 { margin: 0; font-family: var(--font-display), system-ui, sans-serif; font-size: 1.3rem; }
+.panel h3 { margin: 8px 0 0; font-size: 1rem; color: var(--muted); font-weight: 600; }
+
+label { display: flex; flex-direction: column; gap: 4px; font-size: 0.9rem; color: var(--muted); }
+.check { flex-direction: row; align-items: center; gap: 8px; }
+.colors { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+input[type="text"], select { background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font: inherit; }
+input[type="color"] { width: 100%; height: 36px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); padding: 2px; }
+input[type="file"] { font-size: 0.85rem; }
+input[type="range"] { accent-color: var(--accent); width: 100%; }
+
+.slider span { display: flex; justify-content: space-between; }
+.slider b { color: var(--text); font-weight: 600; }
+
+button { background: var(--line); color: var(--text); border: 0; border-radius: 10px; padding: 10px 14px; font: inherit; font-weight: 600; cursor: pointer; }
+button:hover:not(:disabled) { filter: brightness(1.15); }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+button.primary { background: var(--accent); color: var(--accent-ink); }
+button.ghost { background: transparent; border: 1px solid var(--line); }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.stage { position: relative; aspect-ratio: 4 / 3; background: #000; border-radius: 12px; overflow: hidden; }
+.stage video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.empty { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); }
+.count { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--font-display), system-ui, sans-serif; font-size: 9rem; color: #fff; text-shadow: 0 4px 24px rgba(0,0,0,0.6); }
+.flash { position: absolute; inset: 0; background: #fff; opacity: 0.9; }
+
+.thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.thumb { aspect-ratio: 4 / 3; padding: 0; overflow: hidden; display: grid; place-items: center; border: 1px solid var(--line); background: var(--bg); }
+.thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+.sheet { width: 100%; max-width: 360px; height: auto; align-self: center; border-radius: 4px; box-shadow: 0 8px 30px rgba(0,0,0,0.4); background: #fff; }
+.gif { max-width: 200px; align-self: center; border-radius: 4px; }
+
+.hint { margin: 0; font-size: 0.85rem; color: var(--muted); }
+.error { margin: 0; font-size: 0.9rem; color: #ff9b9b; }
+
+/* ===== Cetak: kertas 4R (4 x 6 inch), tanpa margin ===== */
+.print-only { display: none; }
+@page { size: 4in 6in; margin: 0; }
+@media print {
+  html, body { background: #fff; }
+  .app { display: none !important; }
+  .print-only { display: block; width: 4in; height: 6in; margin: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
